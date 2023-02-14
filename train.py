@@ -30,12 +30,13 @@ def main():
 def get_model(path, env, algo):
     if algo == 'ppo':   
         if path is None:
-            policy_kwargs = dict(activation_fn=th.nn.ReLU,
-                            net_arch=dict(pi=[64, 64, 64, 64], vf=[64, 64]))
+            # policy_kwargs = dict(activation_fn=th.nn.ReLU,
+            #                 net_arch=dict(pi=[64, 64, 64, 64], vf=[64, 64]))
             model = PPO("MlpPolicy", env, verbose=1,
                         n_steps=256,
                         tensorboard_log='./logs',
-                        policy_kwargs=policy_kwargs)
+                        # policy_kwargs=policy_kwargs
+                        )
         else:
             model = PPO.load(path, env)
     elif algo == 'a2c':
