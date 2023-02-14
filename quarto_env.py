@@ -56,7 +56,7 @@ class QuartoEnv(gym.Env):
         self.done = False
         self.score = None
         self.n_turns = 0
-        
+
         # We choose the first piece at random
         first_piece = random.randint(0, 15)
         self.pieces[first_piece] = 0
@@ -118,7 +118,14 @@ class QuartoEnv(gym.Env):
             return True, 0
 
         return False, None
-
+    def action_masks(self):
+        # place, piece
+        mask = np.full(32, False)
+        # Place masking
+        mask[:16] = (self.board[:, :, 4] == 0).reshape(16)
+        # Piece masking
+        mask[16:] = self.pieces == 1
+        return mask
         
     def _opponent_turn(self):
         if self._opponent == 'random':
