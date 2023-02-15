@@ -1,3 +1,5 @@
+"""Quarto environment for Reinforcement Learning"""
+
 import itertools 
 import random
 import numpy as np
