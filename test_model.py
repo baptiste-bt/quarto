@@ -1,7 +1,13 @@
+"""Test a Reinforcement Learning agent against a random player at Quarto. Avalaible agents are PPO, A2C and MaskedPPO
+To run:
+    python test_model.py --algo [ALGO] --path [PATH_TO_MODEL] --episodes [N_EPISODES]
+
+"""
+
+
 from stable_baselines3.ppo import PPO
 from stable_baselines3.a2c import A2C
-from stable_baselines3.sac import SAC
-from stable_baselines3.td3 import TD3
+from sb3_contrib.ppo_mask import MaskablePPO
 from quarto_env import QuartoEnv
 import numpy as np
 import argparse
@@ -26,8 +32,11 @@ def main():
         
         while not done:
             # env.render()
-            
-            action, _ = model.predict(obs)
+            if args.algo == "ppo_mask":
+                action_masks = env.action_masks()
+                action, _ = model.predict(obs, action_masks=action_masks)
+            else:
+                action, _ = model.predict(obs)
             # _ = input('Press enter...')
             # print('action:', action)
             # action = env.action_space.sample()
@@ -47,10 +56,8 @@ def load_model(algo, path, env):
         cl = PPO
     elif algo == 'a2c':
         cl = A2C
-    elif algo == 'sac':
-        cl = SAC
-    elif algo == 'td3':
-        cl = TD3
+    elif algo == 'ppo_mask':
+        cl = MaskablePPO
 
     return cl.load(path, env)
 

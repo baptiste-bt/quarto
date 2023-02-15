@@ -1,7 +1,17 @@
+"""Train a Reinforcement Learning agent. Avalaible agents are PPO, A2C and MaskedPPO
+To run:
+    python train_masked.py --steps [N_STEPS] -algo [ALGO]
+
+    or:
+    python train_masked.py --steps [N_STEPS] -algo [ALGO] --path [PATH_TO_MODEL]
+
+    to resume training.
+
+"""
+
+
 from stable_baselines3.ppo import PPO
 from stable_baselines3.a2c import A2C
-from stable_baselines3.sac import SAC
-from stable_baselines3.td3 import TD3
 from stable_baselines3.common.vec_env import SubprocVecEnv
 from stable_baselines3.common.monitor import Monitor
 from sb3_contrib.ppo_mask import MaskablePPO
@@ -51,7 +61,9 @@ def get_model(path, env, algo):
             model = A2C.load(path, env)
     elif algo == 'ppo_mask':
         if path is None:
-            model = MaskablePPO("MlpPolicy", env, verbose=1)
+            model = MaskablePPO("MlpPolicy", env, verbose=1,
+                                # n_steps=256,
+                                tensorboard_log='./logs')
 
 
     return model
