@@ -1,9 +1,9 @@
 """Train a Reinforcement Learning agent. Avalaible agents are PPO, A2C and MaskedPPO
 To run:
-    python train_masked.py --steps [N_STEPS] -algo [ALGO]
+    python train_masked.py --steps [N_STEPS] --algo [ALGO]
 
     or:
-    python train_masked.py --steps [N_STEPS] -algo [ALGO] --path [PATH_TO_MODEL]
+    python train_masked.py --steps [N_STEPS] --algo [ALGO] --path [PATH_TO_MODEL]
 
     to resume training.
 

@@ -12,12 +12,12 @@ This project was completed in order to learn the basics of RL to play a simple g
 
 ### Train instructions
 ```
-python train.py --steps [N_STEPS] -algo [ALGO] [--path [PATH_TO_MODEL]]
+python train.py --steps [N_STEPS] --algo [ALGO] [--path [PATH_TO_MODEL]]
 
 ```
 To train using MaskablePPO, run:
 ```
-python train_masked.py --steps [N_STEPS] -algo ppo_mask [--path [PATH_TO_MODEL]]
+python train_masked.py --steps [N_STEPS] --algo ppo_mask [--path [PATH_TO_MODEL]]
 
 ```
 

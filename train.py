@@ -1,12 +1,11 @@
 """Train a Reinforcement Learning agent. Avalaible agents are PPO and A2C
 To run:
-    python train.py --steps [N_STEPS] -algo [ALGO]
+    python train.py --steps [N_STEPS] --algo [ALGO]
 
     or:
-    python train.py --steps [N_STEPS] -algo [ALGO] --path [PATH_TO_MODEL]
+    python train.py --steps [N_STEPS] --algo [ALGO] --path [PATH_TO_MODEL]
 
     to resume training.
-
 
 """
 
